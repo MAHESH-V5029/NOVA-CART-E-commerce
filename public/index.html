@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NovaCart student e-commerce project" />
+  <title>NovaCart — Everyday shopping</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="announcement">Welcome to NovaCart <span>·</span> Thoughtful finds, everyday prices</div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="NovaCart home"><span class="brand-mark">N</span> nova<span>cart</span></a>
+    <label class="search-wrap" aria-label="Search products"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Search products..." autocomplete="off" /></label>
+    <nav class="header-actions" aria-label="Main navigation">
+      <button class="icon-button" id="account-button" type="button"><span aria-hidden="true">♙</span><span class="button-label">Account</span></button>
+      <button class="icon-button" id="orders-button" type="button"><span aria-hidden="true">▤</span><span class="button-label">Orders</span></button>
+      <button class="cart-button" id="cart-button" type="button"><span aria-hidden="true">▱</span> Cart <span class="cart-count" id="cart-count">0</span></button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> THE EVERYDAY EDIT</p>
+        <h1>Good things.<br /><span>Better everyday.</span></h1>
+        <p class="hero-description">Little upgrades for your everyday life. Explore useful essentials, picked to make every day feel a bit better.</p>
+        <a class="primary-button hero-cta" href="#catalog">Explore the collection <span aria-hidden="true">→</span></a>
+        <div class="hero-points"><span><b>✓</b> Easy ordering</span><span><b>✓</b> Cash on delivery</span></div>
+      </div>
+      <div class="hero-visual" aria-label="A curated collection of everyday products">
+        <div class="hero-orb"></div>
+        <div class="floating-note note-top"><span>✦</span> Everyday favourites</div>
+        <img class="hero-image" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=85" alt="Curated everyday essentials" onerror="this.style.display='none'" />
+        <div class="floating-note note-bottom"><span class="note-icon">♡</span><span><b>Made for your routine</b><small>Simple finds, selected with care</small></span></div>
+      </div>
+      <div class="hero-index">01 <span></span> 03</div>
+    </section>
+
+    <section class="trust-strip" aria-label="Store benefits">
+      <div><span class="trust-icon">↗</span><span><b>Carefully selected</b><small>Useful everyday products</small></span></div>
+      <div><span class="trust-icon">◇</span><span><b>Simple checkout</b><small>A smooth way to order</small></span></div>
+      <div><span class="trust-icon">⌁</span><span><b>Track your order</b><small>Follow every status update</small></span></div>
+    </section>
+
+    <section id="catalog" class="catalog-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE COLLECTION</p><h2>Shop everyday essentials<span class="heading-period">.</span></h2><p class="section-subtitle">Practical pieces that fit right into your day.</p></div>
+        <span class="result-count" id="result-count">Loading products…</span>
+      </div>
+      <div id="notice" class="notice hidden" role="status"></div>
+      <div id="products-grid" class="products-grid"><div class="loading-state">Loading your collection…</div></div>
+    </section>
+
+    <section id="account-panel" class="content-panel hidden">
+      <div class="panel-heading"><div><p class="eyebrow">YOUR SPACE</p><h2>Your account</h2></div><button class="close-button" data-close="account-panel" type="button" aria-label="Close account panel">×</button></div>
+      <div id="account-signed-in" class="hidden"></div>
+      <div id="account-forms" class="auth-grid">
+        <form id="login-form" class="form-card">
+          <h3>Welcome back</h3><p class="form-help">Log in to see your orders and check out.</p>
+          <label>Email address<input name="email" type="email" autocomplete="email" required /></label>
+          <label>Password<input name="password" type="password" autocomplete="current-password" required minlength="8" /></label>
+          <button class="primary-button full-button" type="submit">Log in <span>→</span></button>
+        </form>
+        <form id="register-form" class="form-card">
+          <h3>Create an account</h3><p class="form-help">New here? Create an account in a moment.</p>
+          <label>Full name<input name="name" type="text" autocomplete="name" required minlength="2" maxlength="100" /></label>
+          <label>Email address<input name="email" type="email" autocomplete="email" required /></label>
+          <label>Password<input name="password" type="password" autocomplete="new-password" required minlength="8" /></label>
+          <button class="primary-button full-button" type="submit">Create account <span>→</span></button>
+        </form>
+      </div>
+    </section>
+
+    <section id="cart-panel" class="content-panel hidden">
+      <div class="panel-heading"><div><p class="eyebrow">YOUR SELECTION</p><h2>Your shopping cart</h2></div><button class="close-button" data-close="cart-panel" type="button" aria-label="Close cart">×</button></div>
+      <div id="cart-items" class="cart-items"></div>
+      <div class="cart-bottom"><div class="cart-total-line"><span>Subtotal</span><strong id="cart-total">₹0.00</strong></div><p class="form-help">Shipping and payment details are confirmed at checkout. Payment method: Cash on Delivery.</p>
+        <form id="checkout-form" class="checkout-form"><label>Delivery address<textarea name="shipping_address" rows="3" required minlength="8" maxlength="1000" placeholder="House number, street, area, city, PIN code"></textarea></label><button id="checkout-button" class="primary-button full-button" type="submit">Place order · Cash on Delivery <span>→</span></button><p class="small-print">You must log in to place an order. Product prices and stock are verified by the server.</p></form>
+      </div>
+    </section>
+
+    <section id="orders-panel" class="content-panel hidden">
+      <div class="panel-heading"><div><p class="eyebrow">ORDER HISTORY</p><h2>Your orders</h2></div><button class="close-button" data-close="orders-panel" type="button" aria-label="Close orders">×</button></div>
+      <div id="orders-list"><p class="empty-state">Log in to view your orders.</p></div>
+    </section>
+
+    <section id="admin-panel" class="content-panel hidden">
+      <div class="panel-heading"><div><p class="eyebrow">STORE MANAGEMENT</p><h2>Admin dashboard</h2><p class="section-subtitle">Manage your product catalogue and update order statuses.</p></div><span class="admin-label">ADMIN</span></div>
+      <div class="admin-grid">
+        <form id="product-form" class="form-card">
+          <h3 id="product-form-title">Add a product</h3><input name="id" type="hidden" />
+          <label>Product name<input name="name" required minlength="2" maxlength="160" /></label>
+          <label>Description<textarea name="description" rows="3" required></textarea></label>
+          <div class="two-fields"><label>Price (₹)<input name="price" type="number" min="0" max="99999999" step="0.01" required /></label><label>Stock quantity<input name="stock_quantity" type="number" min="0" max="1000000" step="1" required /></label></div>
+          <label>Image URL (optional)<input name="image_url" type="url" placeholder="https://…" /></label>
+          <button class="primary-button full-button" type="submit">Save product <span>→</span></button><button id="cancel-edit" class="secondary-button full-button hidden" type="button">Cancel edit</button>
+        </form>
+        <div class="admin-content"><h3>Products</h3><div id="admin-products" class="admin-list"></div></div>
+      </div>
+      <div class="admin-orders"><h3>All orders</h3><div id="admin-orders-list"></div></div>
+    </section>
+
+    <section class="bottom-banner"><div><p class="eyebrow">A LITTLE BETTER, EVERY DAY</p><h2>Find your next favourite.</h2><p>Discover simple essentials to make everyday life feel easier.</p></div><a href="#catalog" class="light-button">Shop the collection <span>→</span></a></section>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="#top"><span class="brand-mark">N</span> nova<span>cart</span></a><p>A student project built with HTML, CSS, JavaScript, Node.js, Express and MySQL.</p><span>© <span id="year"></span> NovaCart</span></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
